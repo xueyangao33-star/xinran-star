@@ -56,7 +56,7 @@ const app=document.getElementById('app');let queue=[],base=[],pos=0,level=0,phas
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){stored=false}}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function stop(){playbackId++;clearTimeout(audioTimer);audioTimer=null;if(player){player.pause();player.onended=player.onerror=player.onplaying=player.onwaiting=null;player=null}}
-function preparedAudio(w){let a=audioCache.get(w.i);if(!a){a=new Audio();a.preload='auto';a.src='audio/mobile-v1/'+w.i+'.wav';audioCache.set(w.i,a);a.load()}return a}
+function preparedAudio(w){let a=audioCache.get(w.i);if(!a){a=new Audio();a.preload='auto';a.src='audio/'+([44,48].includes(w.i)?'mobile-v2/':'mobile-v1/')+w.i+'.wav';audioCache.set(w.i,a);a.load()}return a}
 function warmAudio(){if(phase<2){preparedAudio(queue[pos]);for(const w of base)preparedAudio(w)}}
 function guardian(lit=false){return `<span class="guardian ${lit?'lit':''}"><img src="assets/moon-guardian.png" width="1060" height="1484" alt="月光守护者欣然，戴着月亮发夹，手持魔法棒"><span class="guardian-brooch" aria-hidden="true"></span><span class="guardian-star" aria-hidden="true">✦</span></span>`}
 function guardianParty(lit=false){return `<div class="guardian-party">${guardian(lit)}${scene()}</div>`}

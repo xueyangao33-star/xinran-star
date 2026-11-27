@@ -4,7 +4,7 @@ Homophones disambiguate TTS only; game labels retain original characters.
 from pathlib import Path
 import subprocess, tempfile, wave, array
 ROOT=Path(__file__).resolve().parents[1]
-ITEMS={31:('众','树'),44:('专','进'),45:('抵','下'),47:('梨','开'),48:('粗','细')}
+ITEMS={31:('众','树'),44:('钻','进'),45:('抵','下'),47:('梨','开'),48:('粗','细')}
 with tempfile.TemporaryDirectory() as tmp:
     cache={}
     for char in {c for pair in ITEMS.values() for c in pair}:
